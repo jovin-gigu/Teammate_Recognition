@@ -2,6 +2,7 @@ from resemblyzer import VoiceEncoder, preprocess_wav
 from pathlib import Path
 import pickle
 import numpy as np
+from pydub import AudioSegment
 
 # 🎯 Path to dataset and output
 DATASET_DIR = Path("voice_recog/voice_dataset")
@@ -20,9 +21,22 @@ for speaker_dir in DATASET_DIR.iterdir():
     embeddings = []
     file_count = 0
 
-    # 🌀 Support ANY number of WAV files
     for audio_file in speaker_dir.glob("*"):
-        if audio_file.suffix.lower() not in [".wav", ".mp3"]:
+        # 🎧 Convert MP3 to WAV if needed
+        if audio_file.suffix.lower() == ".mp3":
+            try:
+                audio = AudioSegment.from_mp3(audio_file)
+                wav_path = audio_file.with_suffix(".wav")
+                audio.export(wav_path, format="wav")
+                print(f"  🎵 Converted: {audio_file.name} → {wav_path.name}")
+                audio_file.unlink()  # 🗑️ Delete original MP3
+                audio_file = wav_path  # Use the new WAV path
+            except Exception as e:
+                print(f"  ❌ Failed to convert {audio_file.name}: {e}")
+                continue
+
+        # Skip non-WAV files
+        if audio_file.suffix.lower() != ".wav":
             continue
 
         try:
