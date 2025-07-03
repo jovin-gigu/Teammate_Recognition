@@ -18,7 +18,7 @@ A multimodal biometric recognition system that identifies team members using bot
 ```bash
 TeammateRecognition/
 ├── face_recognition/
-│   ├── known_faces/
+│   ├── face_dataset/
 │   ├── train_face.py
 │   └── recognize_face.py
 ├── voice_recognition/
@@ -29,7 +29,9 @@ TeammateRecognition/
 │   ├── face_encodings.pkl
 │   └── voice_embeddings.pkl
 ├── main.py
-└── README.md
+├── README.md
+└─ requirements.txt
+
 ```
 
 
