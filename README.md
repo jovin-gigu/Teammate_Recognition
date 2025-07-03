@@ -45,8 +45,8 @@ pip install -r requirements.txt
 ## Run the files
 Train models:
 ```bash
-python face_recognition/train_face.py
-python voice_recognition/train_voice.py
+python face_recog/train_face.py
+python voice_recog/train_voice.py
 ```
 Run recognizer:
 ```bash
