@@ -3,7 +3,7 @@ import os
 import pickle
 import numpy as np
 
-KNOWN_FACES_DIR = "face_recognition/face_dataset"
+KNOWN_FACES_DIR = "face_recog/face_dataset"
 MODEL_PATH = "models/face_encodings.pkl"
 encodings = {}
 
